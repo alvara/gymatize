@@ -1,2 +1,19 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+
+<div class="text-center mt-5">
+  <h1 >Welcome</h1>
+  <p>Find a gym for your next destination</p>
+
+
+<div class="d-flex justify-content-center">
+  <%= render 'shared/search' %>
+</div>
+
+  <div class="d-flex justify-content-center">
+    <%= form_with url: :gyms, class: 'form-inline', method: :get do |form| %>
+      <%= form.submit "Search Nearby You", class: 'btn text-success my-3'%>
+      <%= form.hidden_field :longitude %>
+      <%= form.hidden_field :latitude %>
+    <% end %>
+  </div>
+</div>
+

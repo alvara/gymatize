@@ -1,2 +1,16 @@
-<h1>Gyms#show</h1>
-<p>Find me in app/views/gyms/show.html.erb</p>
+<h1><%= @gym.vicinity %></h1>
+<p><%= @gym.name %></p>
+<p>Rating: <%= @gym.rating %></p>
+<hr>
+<h2>Equiment</h2>
+<%# simple_form_for @gym do |f| %>
+<%# f.association :equipments %>
+  <%# submit_tag "Create Equipment", class: "btn btn-success" %>
+<%# end %>
+
+
+<% if @gym.equipments.present? %>
+  <% @gym.equipments.each do |equipment| %>
+    <% equipment.name %>
+  <% end  %>
+<% end %>

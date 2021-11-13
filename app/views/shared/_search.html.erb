@@ -1,0 +1,4 @@
+<%= form_with url: :gyms, class: 'form-inline', method: :get do |form| %>
+    <%= form.text_field :location, class: 'form-control mr-2', placeholder: 'Location' %>
+    <%= form.submit "Search", class: 'btn btn-success mr-2 text-white'%>
+  <% end %>

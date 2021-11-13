@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   root to: 'pages#home'
-  resources :gyms, only: [:index, :show, :new, :create]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  resources :gyms, only: [:index, :show, :new, :create] do
+    collection do
+      # get :nearby
+      get :favorite
+    end
+  end
+  resources :equipments  
 end

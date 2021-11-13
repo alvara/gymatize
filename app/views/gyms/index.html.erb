@@ -1,2 +1,17 @@
-<h1>Gyms#index</h1>
-<p>Find me in app/views/gyms/index.html.erb</p>
+<%= render 'shared/search' %>
+<p>
+<% if @location %>
+  Here are gyms near '<%= @location %>':
+<% else %>
+  Here are gyms near you:
+<% end %>
+</p>
+
+
+
+<% @gyms.each do |gym| %>
+  <%= gym['name'] %><br>
+  <%= gym['vicinity'] %>
+  <%= link_to 'Details', gym_path(gym), class: 'btn btn-primary' %><br><br>
+<% end %>
+
