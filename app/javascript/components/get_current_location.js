@@ -1,6 +1,6 @@
 const getCurrentLocation = () => {
   navigator.geolocation.getCurrentPosition((data) => {
-    
+
     const latitude_node = document.querySelector('#latitude');
     const longitude_node = document.querySelector('#longitude');
 
@@ -12,6 +12,9 @@ const getCurrentLocation = () => {
     if(longitude_node){
       longitude_node.value = data.coords.longitude;
     }
+
+    document.querySelector('#nearbyLink').value = 'Search for Gyms Nearby'
+
   });
 }
 

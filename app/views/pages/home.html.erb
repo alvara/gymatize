@@ -10,7 +10,8 @@
 
   <div class="d-flex justify-content-center">
     <%= form_with url: :gyms, class: 'form-inline', method: :get do |form| %>
-      <%= form.submit "Search Nearby You", class: 'btn text-success my-3'%>
+
+      <%= form.submit "Obtaining coordinates.. please wait", class: 'btn text-success my-3', id: 'nearbyLink'%>
       <%= form.hidden_field :longitude %>
       <%= form.hidden_field :latitude %>
     <% end %>

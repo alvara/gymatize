@@ -1,10 +1,11 @@
 <h1><%= @gym.vicinity %></h1>
 <p><%= @gym.name %></p>
 <p>Rating: <%= @gym.rating %></p>
+<p>Favorite: <%= @gym.favorite %></p>
 <hr>
 <h2>Equipment</h2>
 <%= link_to 'Update Equipment List', edit_gym_path, class: "btn btn-success text-white"%>
-
+<%= link_to 'Add to Favorites', toggle_favorite_gym_path(@gym), class: "btn btn-success text-white", method: :patch %>
 
 
 <br>

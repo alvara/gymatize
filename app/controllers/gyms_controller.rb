@@ -22,7 +22,14 @@ class GymsController < ApplicationController
   end
 
   def favorites
-    # @gyms = Gym.where(favorite: true)
+    @gyms = Gym.where(favorite: true)
+  end
+
+  def toggle_favorite
+    @gym = Gym.find(params[:id])
+    @gym.favorite = !@gym.favorite
+    @gym.save
+    redirect_to gym_path(@gym)
   end
 
   def show

@@ -5,10 +5,14 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :gyms, only: [:index, :show, :new, :create,:edit, :update] do
-    # collection do
-    #   # get :nearby
-    #   # get :favorite
-    # end
+    collection do
+      get :favorites
+      
+    end
+
+    member do
+      patch :toggle_favorite
+    end
   end
 
   resources :equipments
