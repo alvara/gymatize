@@ -1,10 +1,14 @@
-<h1>Equipment</h1>
-<p>An overview of all machines</p>
-<%= link_to 'add equipment', new_equipment_path  %>
+<h1 class="mt-5" >Equipment</h1>
+<p>An overview of all machines currently recorded</p>
+<%= link_to 'add equipment', new_equipment_path, class: 'btn btn-success text-white'  %>
 <hr>
+<ul>
 <% @equipments.each do |equipment| %>
+  <li>
   <%= equipment.name %>
-  <%= link_to 'edit', edit_equipment_path(equipment)  %>
-<%= link_to 'Delete', equipment_path(equipment), data: {:confirm => 'Are you sure?'}, method:   :delete %>
-<br>
+  <%# link_to 'edit', edit_equipment_path(equipment)  %>
+<%= link_to '(Delete) ', equipment_path(equipment), data: {:confirm => 'Are you sure?'}, method:   :delete %>
+</li>
+
 <% end %>
+</ol>

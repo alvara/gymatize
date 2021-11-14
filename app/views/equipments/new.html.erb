@@ -1,9 +1,9 @@
-<h1>Equipments#new</h1>
-<p>Find me in app/views/equipments/new.html.erb</p>
+<h1 class="mt-5">Equipment</h1>
+<p>List of available equipment.</p>
 
 <%= simple_form_for @equipment, url: equipments_path, method: :post do |f| %>
 <%= f.input :name %>
 <%= f.input :how_to_use %>
 <%= f.input :brand %>
-<%= f.submit 'Create Equipment' %>
+<%= f.submit 'Create Equipment', class: 'btn btn-success text-white' %>
 <% end %>

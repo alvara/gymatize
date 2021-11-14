@@ -12,6 +12,8 @@ class GymsController < ApplicationController
       # get gyms found near location
       @location = location
       coord = query_to_coord(@location)
+      @latitude = coord[:lat]
+      @longitude = coord[:lng]
       google_gyms_array = scan_gyms_by_coord(coord[:lat], coord[:lng])
       @gyms = convert_to_gyms_array(google_gyms_array)
     else

@@ -1,17 +1,81 @@
-<%= render 'shared/search' %>
-<p>
-<% if @location %>
-  Here are gyms near '<%= @location %>':
-<% else %>
-  Here are gyms near you:
-<% end %>
-</p>
+
+<div class="row">
+    <div class="col-md-4 mt-5">
+      <%= render 'shared/search' %>
+      <p class="text-muted">
+        <% if @location %>
+          Gyms found near '<%= @location %>':
+        <% else %>
+          Gyms found near you:
+        <% end %>
+      </p>
+      
+      <% @gyms.each do |gym| %>
+        <div class="card-product">
+          <div class="card-product-infos">
+            <h2> <%= gym['name'] %></h2>
+            <h6 class="text-muted"> <%= gym['vicinity'] %></h6>
+            <%= link_to 'Details', gym_path(gym), class: 'btn btn-success text-white' %><br><br>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-8">
+        <div id='map' class='w-100'></div>
+    </div>
+</div>
+
+<script>
+
+mapboxgl.accessToken = "<%= ENV['MAPBOX_API'] %>";
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v10',
+  center: [<%= @longitude %>, <%= @latitude %>],
+  zoom: 13
+});
+
+// declare marker points
+const geojson = {
+  type: 'FeatureCollection',
+  features: [
+   <% @gyms.each.with_index do |gym, index| %>
+      {
+        type: 'Feature',
+        geometry: {
+        type: 'Point',
+        coordinates: [<%= gym.location_lng %>, <%= gym.location_lat %>]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Anytime Fitness',
+        index: <%= index %>
+      }
+      }
+      <%= "," unless @gyms.length == index + 1 %>
+    <% end %>
+  ]
+};
+
+// add markers to map
+for (const feature of geojson.features) {
+  // create a HTML element for each feature
+  const el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+  .setLngLat(feature.geometry.coordinates)
+  .setPopup(
+    new mapboxgl.Popup({ offset: 25 }) // add popups
+      .setHTML(
+        `<h4>#${feature.properties.index}</h4><p>${feature.properties.title}</p><p>${feature.properties.description}</p>`
+      )
+  )
+  .addTo(map);
+}
 
 
-
-<% @gyms.each do |gym| %>
-  <%= gym['name'] %><br>
-  <%= gym['vicinity'] %>
-  <%= link_to 'Details', gym_path(gym), class: 'btn btn-primary' %><br><br>
-<% end %>
+</script>
 

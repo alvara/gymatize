@@ -1,7 +1,7 @@
 
 <div class="text-center mt-5">
-  <h1 >Welcome</h1>
-  <p>Find a gym for your next destination</p>
+  <h1>Find Your Gym</h1>
+  <p>Discover the best gym for your next destination.</p>
 
 
 <div class="d-flex justify-content-center">
@@ -10,11 +10,26 @@
 
   <div class="d-flex justify-content-center">
     <%= form_with url: :gyms, class: 'form-inline', method: :get do |form| %>
-
       <%= form.submit "Obtaining coordinates.. please wait", class: 'btn text-success my-3', id: 'nearbyLink'%>
       <%= form.hidden_field :longitude %>
       <%= form.hidden_field :latitude %>
     <% end %>
   </div>
 </div>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = "<%= ENV['MAPBOX_API'] %>";
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/light-v10',
+  center: [-96, 37.8],
+  zoom: 3
+  // center: [<%= @longitude %>, <%= @latitude %>],
+  // zoom: 13
+});
+
 

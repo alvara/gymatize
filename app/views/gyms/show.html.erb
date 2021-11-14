@@ -1,18 +1,39 @@
-<h1><%= @gym.vicinity %></h1>
-<p><%= @gym.name %></p>
-<p>Rating: <%= @gym.rating %></p>
-<p>Favorite: <%= @gym.favorite %></p>
+<div class="row mt-5 justify-content-between">
+  <div class="col-sm-6">
+    <h1 class=""><%= @gym.name %> 
+      <% if @gym.favorite.present? %>
+      <i class="fas fa-heart text-danger"></i>
+      <% end %>
+    </h1>
+    <h4 class="text-muted"><%= @gym.vicinity %></h4>
+    
+    <% @gym.rating.times do %>
+      <i class="fas fa-star text-warning"></i>
+    <% end %>
+     <% (5-@gym.rating).times do %>
+      <i class="far fa-star"></i>
+    <% end %>
+  </div>
+  <div class="col-sm-6 text-right">
+    <%= link_to 'Update Equipment List', edit_gym_path, class: "btn btn-success text-white"%>
+    <% if @gym.favorite.present? %>
+      <%= link_to 'Remove from Favorites', toggle_favorite_gym_path(@gym), class: "btn btn-success text-white", method: :patch %>
+    <% else %>
+      <%= link_to 'Add to Favorites', toggle_favorite_gym_path(@gym), class: "btn btn-success text-white", method: :patch %>
+    <% end %>
+
+  </div>
+</div>
+
 <hr>
 <h2>Equipment</h2>
-<%= link_to 'Update Equipment List', edit_gym_path, class: "btn btn-success text-white"%>
-<%= link_to 'Add to Favorites', toggle_favorite_gym_path(@gym), class: "btn btn-success text-white", method: :patch %>
 
-
-<br>
 <% if @gym.equipments.present? %>
-  <% @gym.equipments.each do |equipment| %>
-    <%= equipment.name %><br>
-  <% end  %>
+  <ul>
+    <% @gym.equipments.each do |equipment| %>
+      <li><%= equipment.name %></li>
+    <% end  %>
+  </ul>
 <% else %>
 No machines added yet
 <% end %>

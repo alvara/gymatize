@@ -1,12 +1,16 @@
-<h1>Your Favorite Gyms</h1>
+<h1 class="mt-5">Favorite Gyms</h1>
 
 <% if @gyms.empty? %>
   You havn't favorited any gyms yet.
   <% else %>
     <% @gyms.each do |gym| %>
-      <%= gym['name'] %><br>
-      <%= gym['vicinity'] %>
-      <%= link_to 'Details', gym_path(gym), class: 'btn btn-primary' %><br><br>
+      <div class="card-product">
+        <div class="card-product-infos">
+          <h2> <%= gym['name'] %></h2>
+          <h6 class="text-muted"> <%= gym['vicinity'] %></h6>
+          <%= link_to 'Details', gym_path(gym), class: 'btn btn-success text-white' %><br><br>
+        </div>
+      </div>
     <% end %>
 <% end %>
 
