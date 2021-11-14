@@ -8,4 +8,3 @@
 
 p "clearing the databases"
 
-Gym.destroy_all

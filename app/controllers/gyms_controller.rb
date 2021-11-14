@@ -30,6 +30,7 @@ class GymsController < ApplicationController
   end
 
   def new
+
     @gym = Gym.new
   end
 
@@ -37,7 +38,25 @@ class GymsController < ApplicationController
     raise
   end
 
+  def edit
+    @gym = Gym.find(params[:id])
+  end
+
+  def update
+    @gym = Gym.find(params[:id])
+    if @gym.update(gym_params)
+      redirect_to gym_path(@gym)
+    else
+      render :edit
+    end
+  end
+
   private
+
+  def gym_params
+    
+    params.require(:gym).permit(:name, :equipment_ids => [])
+  end
 
   # get single set coordinates based on user location query
   def query_to_coord(location)

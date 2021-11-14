@@ -2,15 +2,16 @@
 <p><%= @gym.name %></p>
 <p>Rating: <%= @gym.rating %></p>
 <hr>
-<h2>Equiment</h2>
-<%# simple_form_for @gym do |f| %>
-<%# f.association :equipments %>
-  <%# submit_tag "Create Equipment", class: "btn btn-success" %>
-<%# end %>
+<h2>Equipment</h2>
+<%= link_to 'Update Equipment List', edit_gym_path, class: "btn btn-success text-white"%>
 
 
+
+<br>
 <% if @gym.equipments.present? %>
   <% @gym.equipments.each do |equipment| %>
-    <% equipment.name %>
+    <%= equipment.name %><br>
   <% end  %>
+<% else %>
+No machines added yet
 <% end %>

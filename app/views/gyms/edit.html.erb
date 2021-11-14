@@ -1,0 +1,6 @@
+<%= simple_form_for @gym do |f| %>
+<%= f.input :name %>
+
+    <%= f.association :equipments, as: :check_boxes %>
+    <%= f.submit 'Update Equipment List' %>
+<% end %>
