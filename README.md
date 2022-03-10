@@ -31,6 +31,7 @@ You can find more in depth information about the development of this project [he
 
 This project was built with the following technology:
 
+* Map functionality powered by both [Google Maps API](https://developers.google.com/maps) and [MapBox API](https://docs.mapbox.com/api/overview/)
 * Framework built on [Ruby on Rails](https://rubyonrails.org/)
 * Styled with [Bootstrap](https://getbootstrap.com)
 * Deployed on [Heroku](https://heroku.com/)
